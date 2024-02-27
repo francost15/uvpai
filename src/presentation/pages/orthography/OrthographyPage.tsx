@@ -1,9 +1,15 @@
 import { useState } from "react"
-import { GptMessage, MyMessage,TextMessageBox, TypingLoader } from "../../components"
+import { GptMessage, GptOrthographyMessage, MyMessage,TextMessageBox, TypingLoader } from "../../components"
+import { orthographyUseCase } from "../../../core/use-cases";
 
 interface Message {
   text: string;
   isGpt: boolean;
+  info?: {
+    userScore: number;
+    errors: string[];
+    message: string;
+  }
 }
 export const OrthographyPage = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -11,49 +17,61 @@ export const OrthographyPage = () => {
   const handlePost = async(text: string) => {
     setIsLoading(true);
     setMessages( (prev) => [...prev, {text: text, isGpt: false}]);
-    //TODOS UseCase
-    setIsLoading(false);
+    const {ok,errors,message,userScore} = await orthographyUseCase(text);
+    if (!ok) {
+      setMessages((prev) => [...prev,{text: 'No se pudo realizar la correcion', isGpt: true}]);
+    }else {
+      setMessages((prev) => [...prev,{
+        text: message, isGpt: true,
+        info: {errors,message,userScore}
+      }]);
+    }
     //Todo: Añadir el mensaje de isGPT en true
+    setIsLoading(false);
   }
   return (
     <div className="chat-container">
       <div className="chat-messages">
         <div className="grid grid-cols-12 gap-y-2">
-          {/* Bienvenida*/}
-          <GptMessage text= "Hola,Soy el bot ai de ortografia puedes hacerme cualquier pregunta"/>
+          {/* Bienvenida */}
+          <GptMessage text="Hola, puedes escribir tu texto en español, y te ayudo con las correcciones" />
+
           {
-            messages.map( (message , index) => (
+            messages.map( (message, index) => (
               message.isGpt
-              ? (
-                <GptMessage key={index} text="Esto es de openAi" />
+                ? (
+                  <GptOrthographyMessage 
+                    key={ index }  
+                    { ...message.info! }
+                  />
                 )
-              : (
-                  <MyMessage key={index} text= {message.text}/>
+                : (
+                  <MyMessage key={ index } text={ message.text } />
                 )
+                
             ))
           }
+
+          
           {
             isLoading && (
-            <div className="col-start-1 col-end-12 fade-in">
-              <TypingLoader/>
-            </div>
+              <div className="col-start-1 col-end-12 fade-in">
+                <TypingLoader />
+              </div>
             )
           }
           
+
         </div>
       </div>
-      <TextMessageBox
-        onSendMessage={handlePost}
-        placeholder="Escribe aqui lo que deseas"
+
+
+      <TextMessageBox 
+        onSendMessage={ handlePost }
+        placeholder='Escribe aquí lo que deseas'
         disableCorrections
       />
-            {/* <TextMessageBoxFile
-        onSendMessage={handlePost}
-        placeholder="Escribe aqui lo que deseas"
-      /> */}
-      {/* <TextMessageBoxSelect
-      onSendMessage={console.log}
-      options={[{id: "1", text: 'hola'},{id:'2',text: 'Mundo'} ]}/> */}
+
     </div>
-  )
-}
+  );
+};
