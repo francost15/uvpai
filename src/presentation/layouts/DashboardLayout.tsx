@@ -6,9 +6,9 @@ export const DashboardLayout = () => {
     return (
         <main className="flex flex-row ">
         <nav className="hidden sm:flex flex-col " style={{ backgroundColor: 'rgb(51, 0, 68)', padding: '1.25rem' }}>
-        <h1 className="font-bold text-lg lg:text-3xl bg-gradient-to-br from-white via-white bg-clip-text text-transparent">
+        <button className="font-bold text-lg lg:text-3xl bg-gradient-to-br from-white via-white bg-clip-text text-transparent">
         ENGI AI
-        </h1>
+        </button>
             {/* Aqui puede ir el logo */}
         <div className="border-purple-400 border my-3" />
 
