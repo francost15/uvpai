@@ -11,7 +11,7 @@ export const GptOrthographyMessage = ({ userScore, errors = [], message }: Props
         <div className="flex items-center justify-center h-10 w-10 rounded-full bg-yellow-400 flex-shrink-0">
           JS
         </div>
-        <div className="relative ml-3 text-sm bg-black bg-opacity-25 pt-3 pb-2 px-4 shadow rounded-xl">
+        <div className="relative ml-3 text-sm bg-white bg-opacity-25 pt-3 pb-2 px-4 shadow rounded-xl">
 
           <h3 className="text-3xl">Puntaje: { userScore }%</h3>
           <p>{ message }</p>

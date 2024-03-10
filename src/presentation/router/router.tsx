@@ -1,7 +1,7 @@
 import { Navigate, createBrowserRouter } from "react-router-dom";
 import { AssistantPage, AudioToTextPage, ImageGenerationPage,
-    ImageTunningPage, OrthographyPage, ProsConsPage, 
-    ProsConsStreamPage, TextToAudioPage, TranslatePage } from "../pages";
+    OrthographyPage, ProsConsPage, 
+    } from "../pages";
 import { DashboardLayout } from "../layouts/DashboardLayout";
 
 export const menuRoutes = [
@@ -23,20 +23,7 @@ export const menuRoutes = [
         description: "",
         component: <ProsConsPage />
     },
-    // {
-    //     to: "/pros-cons-stream",
-    //     icon: "fa-brands fa-c",
-    //     title: "C",
-    //     description: "",
-    //     component: <ProsConsStreamPage />
-    // },
-    // {
-    //     to: "/translate",
-    //     icon: "fa-brands fa-c",
-    //     title: "C++",
-    //     description: "",
-    //     component: <TranslatePage />
-    // },
+
     {
         to: "/text-to-audio",
         icon: "fa-brands fa-c",
@@ -58,42 +45,7 @@ export const menuRoutes = [
         description: "",
         component: <ImageGenerationPage />
     },
-    // {
-    //     to: "/image-tunning",
-    //     icon: "fa-brands fa-flutter",
-    //     title: "Flutter",
-    //     description: "",
-    //     component: <ImageTunningPage />
-    // },
-    // {
-    //     to: "/assistant",
-    //     icon: "fa-brands fa-perl",
-    //     title: "Perl",
-    //     description: "",
-    //     component: <TextToAudioPage />
-    // },
-    // {
-    //     to: "/assistant",
-    //     icon: "fa-brands fa-perl",
-    //     title: "Angular",
-    //     description: "",
-    //     component: <AssistantPage />
-    // },
-    // {
-    //     to: "/assistant",
-    //     icon: "<FaReact/>",
-    //     title: "React",
-    //     description: "",
-    //     component: <AssistantPage />
-    // },
-    // {
-        
-    //     to: "/assistant",
-    //     icon: "ViFileTypeVue",
-    //     title: "Vue",
-    //     description: "",
-    //     component: <AssistantPage />
-    // },
+
 ];
     export const router = createBrowserRouter([
     {
