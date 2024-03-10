@@ -6,67 +6,89 @@ import { DashboardLayout } from "../layouts/DashboardLayout";
 
 export const menuRoutes = [
     {
-    to: "/orthography",
-    icon: "fa-solid fa-spell-check",
-    title: "Ortografía",
-    description: "Corregir ortografía",
-    component: <OrthographyPage />
+        to: "/orthography",
+        icon: "fa-brands fa-js",
+        title: "Javascript",
+        description: "   ",
+        component: <OrthographyPage />
     },
     {
-    to: "/pros-cons",
-    icon: "fa-solid fa-code-compare",
-    title: "Pros & Cons",
-    description: "Comparar pros y contras",
-    component: <ProsConsPage />
+        to: "/pros-cons",
+        icon: "fa-brands fa-python",
+        title: "Python",
+        description: "",
+        component: <ProsConsPage />
     },
     {
-    to: "/pros-cons-stream",
-    icon: "fa-solid fa-water",
-    title: "Como stream",
-    description: "Con stream de mensajes",
-    component: <ProsConsStreamPage />
+        to: "/pros-cons-stream",
+        icon: "fa-brands fa-c",
+        title: "C",
+        description: "",
+        component: <ProsConsStreamPage />
     },
     {
-    to: "/translate",
-    icon: "fa-solid fa-language",
-    title: "Traducir",
-    description: "Textos a otros idiomas",
-    component: <TranslatePage />
+        to: "/translate",
+        icon: "fa-brands fa-c",
+        title: "C++",
+        description: "",
+        component: <TranslatePage />
     },
     {
-    to: "/text-to-audio",
-    icon: "fa-solid fa-podcast",
-    title: "Texto a audio",
-    description: "Convertir texto a audio",
-    component: <TextToAudioPage />
+        to: "/text-to-audio",
+        icon: "fa-brands fa-c",
+        title: "C#",
+        description: "",
+        component: <TextToAudioPage />
     },
     {
         to: "/audio-to-text",
-        icon: "fa-solid fa-comment-dots",
-        title: "Audio a texto",
-        description: "Convertir audio a texto",
+        icon: "fa-brands fa-java",
+        title: "Java",
+        description: "",
         component: <AudioToTextPage />
     },
     {
-    to: "/image-generation",
-    icon: "fa-solid fa-image",
-    title: "Imágenes",
-    description: "Generar imágenes",
-    component: <ImageGenerationPage />
+        to: "/image-generation",
+        icon: "fa-brands fa-rust",
+        title: "Rust",
+        description: "",
+        component: <ImageGenerationPage />
     },
     {
-    to: "/image-tunning",
-    icon: "fa-solid fa-wand-magic",
-    title: "Editar imagen",
-    description: "Generación continua",
-    component: <ImageTunningPage />
+        to: "/image-tunning",
+        icon: "fa-brands fa-flutter",
+        title: "Flutter",
+        description: "",
+        component: <ImageTunningPage />
     },
     {
-    to: "/assistant",
-    icon: "fa-solid fa-user",
-    title: "Asistente",
-    description: "Información del asistente",
-    component: <AssistantPage />
+        to: "/assistant",
+        icon: "fa-brands fa-perl",
+        title: "Perl",
+        description: "",
+        component: <AssistantPage />
+    },
+    {
+        to: "/assistant",
+        icon: "fa-brands fa-perl",
+        title: "Angular",
+        description: "",
+        component: <AssistantPage />
+    },
+    {
+        to: "/assistant",
+        icon: "<FaReact/>",
+        title: "React",
+        description: "",
+        component: <AssistantPage />
+    },
+    {
+        
+        to: "/assistant",
+        icon: "ViFileTypeVue",
+        title: "Vue",
+        description: "",
+        component: <AssistantPage />
     },
 ];
     export const router = createBrowserRouter([

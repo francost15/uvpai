@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { GptMessage, GptOrthographyMessage, MyMessage,TextMessageBox, TypingLoader } from "../../components"
 import { orthographyUseCase } from "../../../core/use-cases";
+// import { bannerComponent } from '../../components/tailwind-ui/banner'; // Importa el componente bannerComponent aquí
 
 interface Message {
   text: string;
@@ -30,11 +31,13 @@ export const OrthographyPage = () => {
     setIsLoading(false);
   }
   return (
+    <>
+    {/* {bannerComponent()}  */}
     <div className="chat-container">
       <div className="chat-messages">
-        <div className="grid grid-cols-12 gap-y-2">
+        <div className="grid grid-cols-12 gap-y-1">
           {/* Bienvenida */}
-          <GptMessage text="Hola, puedes escribir tu texto en español, y te ayudo con las correcciones" />
+          <GptMessage text="Hola, soy el bot de Javascript" />
 
           {
             messages.map( (message, index) => (
@@ -68,10 +71,11 @@ export const OrthographyPage = () => {
 
       <TextMessageBox 
         onSendMessage={ handlePost }
-        placeholder='Escribe aquí lo que deseas'
+        placeholder='Introduce una petición aqui'
         disableCorrections
       />
 
     </div>
+    </>
   );
 };
