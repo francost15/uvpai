@@ -23,13 +23,12 @@ export const TextMessageBox = ({ onSendMessage, placeholder, disableCorrections 
     return (
     <form
         onSubmit={ handleSendMessage }
-        className="flex flex-row items-center h-1 rounded-xl bg-black w-full px-2"
+        className="flex flex-row items-center h-20 rounded-xl bg-black w-full px-3"
     >
 
-        <div className="flex-grow">
-        <div className="relative w-full">
-
-            <input 
+        <div className="flex-grow ">
+    <div className="relative w-full">
+        <input 
             type="text" 
             autoFocus
             name="message"
@@ -40,15 +39,14 @@ export const TextMessageBox = ({ onSendMessage, placeholder, disableCorrections 
             spellCheck={ disableCorrections ? 'true': 'false' }
             value={ message }
             onChange={ (e) => setMessage( e.target.value ) }
-            />
+        />
+    </div>
+</div>
 
-
-        </div>
-        </div>
 
                 {/* boton de enviar */}
                 <div className="ml-4">
-    <button className="btn-primary mt-11">
+    <button className="btn-primary mt-1">
         <div className="svg-wrapper-1">
         <div className="svg-wrapper">
             <svg
