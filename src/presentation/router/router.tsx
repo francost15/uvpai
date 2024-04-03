@@ -1,64 +1,71 @@
 import { Navigate, createBrowserRouter } from "react-router-dom";
 import { AssistantPage, AudioToTextPage, ImageGenerationPage,
-    OrthographyPage, ProsConsPage, 
+    OrthographyPage, ProsConsPage, NotFoundPage, MainPage
     } from "../pages";
 import { DashboardLayout } from "../layouts/DashboardLayout";
 
 export const menuRoutes = [
-    // {
-    //     to: "/dashboardPage"
-    //     icon
-    // },
     {
-        to: "/orthography",
+        to: "orthography",
         icon: "fa-brands fa-js",
         title: "Javascript",
         description: "   ",
         component: <OrthographyPage />
     },
     {
-        to: "/pros-cons",
+        to: "pros-cons",
         icon: "fa-brands fa-python",
         title: "Python",
         description: "",
         component: <ProsConsPage />
     },
-
     {
-        to: "/text-to-audio",
+        to: "text-to-audio",
         icon: "fa-brands fa-c",
         title: "C#",
         description: "",
         component: <AssistantPage />
     },
     {
-        to: "/audio-to-text",
+        to: "audio-to-text",
         icon: "fa-brands fa-java",
         title: "Java",
         description: "",
         component: <AudioToTextPage />
     },
     {
-        to: "/image-generation",
+        to: "image-generation",
         icon: "fa-brands fa-rust",
         title: "Rust",
         description: "",
         component: <ImageGenerationPage />
     },
-
 ];
-    export const router = createBrowserRouter([
+
+export const router = createBrowserRouter([
     {
-    path: "/",
-    element: <DashboardLayout/>,
+        path: "/",
+        element: <Navigate to="/main" />,
+    },
+    {
+        path: "main",
+        element: <MainPage />,
+    },
+    {
+        path: '*',
+        element: <NotFoundPage/>
+    },
+    {
+        path: "/bots",
+        element: <DashboardLayout/>,
         children: [
             ...menuRoutes.map(route => ({
                 path: route.to,
                 element: route.component
             })),
             {
-                path: '',
-                element: <Navigate to={menuRoutes[0].to}/>
+                path: '*',
+                element: <NotFoundPage/>
             }
         ],
     }

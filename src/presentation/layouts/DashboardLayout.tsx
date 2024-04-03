@@ -39,7 +39,7 @@ export const DashboardLayout = () => {
         <button
           onClick={toggleSidebar}
           className={`p-2 bg-white text-purple-600 rounded-full shadow-lg hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 transition-colors duration-200 fixed top-[50%] ${
-            isSidebarVisible ? "left-[calc(14%-1.75rem)]" : "left-0"
+            isSidebarVisible ? "left-[calc(12.5%-1.75rem)]" : "left-0"
           } transform -translate-y-1/2`}
           style={{ marginLeft: "1rem" }}
         >

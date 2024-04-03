@@ -1,7 +1,6 @@
 import { useState } from "react"
-import { GptMessage, GptOrthographyMessage, MyMessage,TextMessageBox, TypingLoader } from "../../components"
+import { GptMessage, GptOrthographyMessage, MyMessage,TextMessageBox, TypingLoader, } from "../../components"
 import { orthographyUseCase } from "../../../core/use-cases";
-// import { bannerComponent } from '../../components/tailwind-ui/banner'; // Importa el componente bannerComponent aquí
 
 interface Message {
   text: string;
@@ -32,7 +31,6 @@ export const OrthographyPage = () => {
   }
   return (
     <>
-    {/* {bannerComponent()}  */}
     <div className="chat-container">
       <div className="chat-messages">
         <div className="grid grid-cols-12 gap-y-1">

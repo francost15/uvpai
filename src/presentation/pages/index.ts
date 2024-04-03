@@ -7,3 +7,5 @@ export * from './pro-cons/ProsConsPage';
 export * from './pros-const-stream/ProsConsStreamPage';
 export * from './text-to-audio/TextToAudioPage';
 export * from './translate/TranslatePage';
+export * from './Not404';
+export * from './MainPage/MainPage';
