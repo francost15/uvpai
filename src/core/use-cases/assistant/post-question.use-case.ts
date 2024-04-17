@@ -1,4 +1,4 @@
-import { QuestionResponse } from '../../../interfaces';
+import { QuestionResponse } from "../../interfaces/assistant.response";
 
 
 export const postQuestionUseCase = async ( threadId: string, question: string ) => {
@@ -16,8 +16,7 @@ export const postQuestionUseCase = async ( threadId: string, question: string ) 
 
 
     const replies = await resp.json() as QuestionResponse[];
-    console.log(replies);
-
+  
     return replies;
 
 

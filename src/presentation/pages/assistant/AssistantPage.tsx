@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { createThreadUseCase, postQuestionUseCase } from '../../../core/use-cases';
+import { createThreadUseCase } from '../../../core/use-cases/assistant/create.thread.use-case';
+import { postQuestionUseCase } from '../../../core/use-cases/assistant/post-question.use-case';
 import { GptMessage, MyMessage, TypingLoader, TextMessageBox } from '../../components';
 
 
@@ -7,9 +8,6 @@ interface Message {
   text: string;
   isGpt: boolean;
 }
-
-
-
 
 export const AssistantPage = () => {
 
@@ -25,61 +23,43 @@ export const AssistantPage = () => {
       setThreadId( threadId );
     } else {
       createThreadUseCase()
-        .then( (id) => {
-          setThreadId(id);
-          localStorage.setItem('threadId', id)
-        })
+      .then( (id)=> {
+        setThreadId( id );
+        localStorage.setItem('threadId', id);
+      })
     }
   }, []);
-
-
-  // useEffect(() => {
-  //   if ( threadId ) {
-  //     setMessages( (prev) => [ ...prev, { text: `Número de thread ${ threadId }`, isGpt: true }] )
-  //   }
-  // }, [threadId])
   
-  
-
-
-
-
   const handlePost = async( text: string ) => {
 
     if ( !threadId ) return;
-
+  
     setIsLoading(true);
-    setMessages( (prev) => [...prev, { text: text, isGpt: false }] );
-
-    
+  
+    // Primero, agrega el mensaje del usuario
+    setMessages( prev => [...prev, { text: text, isGpt: false }] );
+  
     const replies = await postQuestionUseCase(threadId, text)
     
     setIsLoading(false);
-
+  
+    // Luego, agrega las respuestas de la IA
     for (const reply of replies) {
       for (const message of reply.content) {
-        setMessages ( (prev) => [
-          ...prev,
-          { text: message, isGpt: (reply.role === 'assistant'), info: reply  }
-        ] )
+        setMessages( prev => [...prev, { text: message, isGpt: (reply.role === 'assistant'), info: reply  }] )
       }
     }
-    
-
-
   }
-
-
 
   return (
     <div className="chat-container">
       <div className="chat-messages">
         <div className="grid grid-cols-12 gap-y-2">
           {/* Bienvenida */}
-          <GptMessage text="Buen día, soy Sam,¿Cuál es tu nombre? y ¿en qué puedo ayudarte?" />
-
+          <GptMessage text="Buen día, soy tu asistente de Javascript ¿en qué puedo ayudarte?" />
+  
           {
-            messages.map( (message, index) => (
+            [...messages].reverse().map( (message, index) => (
               message.isGpt
                 ? (
                   <GptMessage key={ index } text={ message.text } />
@@ -87,11 +67,9 @@ export const AssistantPage = () => {
                 : (
                   <MyMessage key={ index } text={ message.text } />
                 )
-                
             ))
           }
-
-          
+  
           {
             isLoading && (
               <div className="col-start-1 col-end-12 fade-in">
@@ -99,18 +77,15 @@ export const AssistantPage = () => {
               </div>
             )
           }
-          
-
         </div>
       </div>
-
-
+  
       <TextMessageBox 
         onSendMessage={ handlePost }
         placeholder='Escribe aquí lo que deseas'
         disableCorrections
       />
-
+  
     </div>
-  );
+  )
 };

@@ -1,5 +1,5 @@
 
-export const createThreadUseCase = async () => {
+export const createThreadUseCase = async (): Promise<string> => {
   
     try {
       
