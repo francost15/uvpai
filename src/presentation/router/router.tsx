@@ -1,6 +1,9 @@
 import { Navigate, createBrowserRouter } from "react-router-dom";
 import { AssistantPage
-    , NotFoundPage, MainPage
+    , NotFoundPage, MainPage,
+    AssistantPageJava,
+    AssistantPagePython,
+    AssistantPageC
     } from "../pages";
 import { DashboardLayout } from "../layouts/DashboardLayout";
 
@@ -12,34 +15,28 @@ export const menuRoutes = [
         description: "   ",
         component: <AssistantPage />
     },
-    // {
-    //     to: "pros-cons",
-    //     icon: "fa-brands fa-python",
-    //     title: "Python",
-    //     description: "",
-    //     component: <ProsConsPage />
-    // },
-    // {
-    //     to: "text-to-audio",
-    //     icon: "fa-brands fa-c",
-    //     title: "C#",
-    //     description: "",
-    //     component: <AssistantPage />
-    // },
-    // {
-    //     to: "audio-to-text",
-    //     icon: "fa-brands fa-java",
-    //     title: "Java",
-    //     description: "",
-    //     component: <AudioToTextPage />
-    // },
-    // {
-    //     to: "image-generation",
-    //     icon: "fa-brands fa-rust",
-    //     title: "Rust",
-    //     description: "",
-    //     component: <ImageGenerationPage />
-    // },
+    {
+        to: "java",
+        icon: "fa-brands fa-java",
+        title: "Java",
+        description: "   ",
+        component: <AssistantPageJava />
+    },
+    {
+        to: "python",
+        icon: "fa-brands fa-python",
+        title: "Python",
+        description: "   ",
+        component: <AssistantPagePython />
+    },
+    {
+        to: "c",
+        icon: "fa-brands fa-c",
+        title: "C",
+        description: "   ",
+        component: <AssistantPageC />
+    },
+
 ];
 
 export const router = createBrowserRouter([
@@ -56,7 +53,7 @@ export const router = createBrowserRouter([
         element: <NotFoundPage/>
     },
     {
-        path: "/bots",
+        path: "/asistentes",
         element: <DashboardLayout/>,
         children: [
             ...menuRoutes.map(route => ({
