@@ -1,12 +1,12 @@
 import { QuestionResponse } from "../../interfaces/assistant.response";
 
 
-export const postQuestionUseCase = async ( threadId: string, question: string ) => {
+export const postQuestionUseCaseJava = async ( threadId: string, question: string ) => {
 
 
   try {
 
-    const resp = await fetch(`${import.meta.env.VITE_ASSISTANT_API_JAVASCRIPT}/user-question`, {
+    const resp = await fetch(`${ import.meta.env.VITE_ASSISTANT_API_JAVA}/user-question`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

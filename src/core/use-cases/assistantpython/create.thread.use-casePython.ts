@@ -1,9 +1,9 @@
 
-export const createThreadUseCase = async (): Promise<string> => {
+export const createThreadUseCasePython = async (): Promise<string> => {
   
     try {
       
-      const resp = await fetch(`${ import.meta.env.VITE_ASSISTANT_API_JAVASCRIPT}/create-thread`,{
+      const resp = await fetch(`${ import.meta.env.VITE_ASSISTANT_API_PYTHON}/create-thread`,{
         method: 'POST'
       });
   

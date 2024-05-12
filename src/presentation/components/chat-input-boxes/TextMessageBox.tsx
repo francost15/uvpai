@@ -23,25 +23,26 @@ export const TextMessageBox = ({ onSendMessage, placeholder, disableCorrections 
     return (
         <form
             onSubmit={handleSendMessage}
-            className="flex flex-row items-center h-20 rounded-xl  w-full px-1"
+            className="flex flex-row items-center h-15 rounded-xl  w-full px-1"
         >
             <div className="flex-grow ">
                 <div className="relative w-full"></div>
-    <div className="relative w-full">
-        <input 
-            type="text" 
-            autoFocus
-            name="message"
-            className="flex w-full border rounded-xl text-black focus:outline-none focus:border-purple-800 pl-4 h-10 "
-            placeholder={ placeholder }
-            autoComplete={ disableCorrections ? 'on': 'off' }
-            autoCorrect={ disableCorrections ? 'on': 'off' }
-            spellCheck={ disableCorrections ? 'true': 'false' }
-            value={ message }
-            onChange={ (e) => setMessage( e.target.value ) }
-        />
-    </div>
-</div>
+                    <div className="relative w-full">
+                    <input 
+                    type="text" 
+                    autoFocus
+                    name="message"
+                    className="flex w-full rounded-xl text-black focus:outline-none focus:border-purple-600 border-gray-300 pl-4 h-12 "
+                    placeholder={ placeholder }
+                    autoComplete={ disableCorrections ? 'on': 'off' }
+                    autoCorrect={ disableCorrections ? 'on': 'off' }
+                    spellCheck={ disableCorrections ? 'true': 'false' }
+                    value={ message }
+                    onChange={ (e) => setMessage( e.target.value ) }
+                    required
+                />
+                </div>
+            </div>
 
 
                 {/* boton de enviar */}

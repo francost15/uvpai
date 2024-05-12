@@ -27,11 +27,11 @@ em {
 
 .btn-primary {
   font-family: inherit;
-  font-size: 15px;
-  background: rgb(188, 121, 242);
+  font-size: 16px;
+  background: rgb(150, 40, 235);
   color: white;
   padding: 0.6em 1em;
-  padding-left: 0.6em;
+  padding-left: 0.9em;
   display: flex;
   align-items: center;
   border: none;
@@ -82,17 +82,31 @@ em {
 
 
 .btn-primary:disabled {
-  @apply bg-purple-500 text-white font-bold py-2 px-4 rounded-xl opacity-50 cursor-not-allowed;
+  @apply bg-purple-400 text-white font-bold py-2 px-4 rounded-xl opacity-50 cursor-not-allowed;
 }
 .chat-container {
-  @apply flex flex-col flex-auto flex-shrink-0 h-full;
+  @apply flex flex-col flex-auto flex-shrink-0 h-full overflow-auto;
   margin-top: 1rem; /* Ajusta el valor según sea necesario */
   background-color: rgb(36, 36, 34);
 }
-
 .chat-messages {
-  @apply flex flex-col h-full overflow-x-auto mb-4  overflow-y-auto;
+  @apply flex flex-col h-full overflow-x-auto overflow-y-auto;
   background-color: rgb(36, 36, 34);
+   /* Estilos de scrollbar personalizados */
+   &::-webkit-scrollbar {
+    width: 8px;
+    cursor: pointer;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: rgb(72, 74, 78);
+    cursor: pointer;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    cursor: pointer;
+    background-color: #ac05ff;
+  }
 }
 
 
