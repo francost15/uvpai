@@ -15,7 +15,7 @@ export const AssistantPage = ({js}: {js: string}) => {
     return savedMessages ? JSON.parse(savedMessages) : [];
   });
   const [threadId, setThreadId] = useState<string>();
-
+  const [isChatVisible, setIsChatVisible] = useState(false); // Nuevo estado para controlar la visibilidad del chat
 
   // Obtener el thread, y si no existe, crearlo
   useEffect(() => {
@@ -30,27 +30,6 @@ export const AssistantPage = ({js}: {js: string}) => {
       })
     }
   }, []);
-    // useEffect(() => {
-  //   if ( threadId ) {
-  //     setMessages( (prev) => [ ...prev, { text: `Número de thread ${ threadId }`, isGpt: true }] )
-  //   }
-  // }, [threadId])
-  
-  // componente de historial
-  // const handlePost = async( text: string ) => {
-  //   if ( !threadId ) return;
-  //   setIsLoading(true);
-  //   // Primero, agrega el mensaje del usuario
-  //   setMessages( (prev) => [...prev, { text: text, isGpt: false }] );
-  //   const replies = await postQuestionUseCaseJava(threadId, text)
-  //   setIsLoading(false);
-  //   // Luego, agrega las respuestas de la IA
-  //   for (const reply of replies) {
-  //     for (const message of reply.content) {
-  //       setMessages( (prev) => [...prev, { text: message, isGpt: (reply.role === 'assistant'), info: reply  }] )
-  //     }
-  //   }
-  // }
 
   const handlePost = async( text: string ) => {
     if ( !threadId ) return;
@@ -82,39 +61,76 @@ export const AssistantPage = ({js}: {js: string}) => {
   }
 
   return (
-    <div className="chat-container">
-      <div className="chat-messages">
-        <div className="grid grid-cols-12 y-2">
-          {/* Bienvenida */}
-          <GptMessage text="Buen día, soy tu asistente de Javascript,estoy entrenado para ayudarte en cualquier duda que tengas ¿en qué puedo ayudarte?" />
-  
-          {
-            [...messages].reverse().map( (message, index) => (
-              message.isGpt
-                ? (
-                  <GptMessage key={ index } text={ message.text } />
-                )
-                : (
-                  <MyMessage key={ index } text={ message.text } />
-                )
-            ))
-          }
-  
-          {
-            isLoading && (
-              <div className="col-start-1 col-end-12 fade-in">
-                <TypingLoader />
-              </div>
-            )
-          }
+    <>
+      {!isChatVisible && ( // Solo muestra el botón si isChatVisible es falso
+    <div className="flex justify-end items-center mt-60 sm:mt-72 md:mt-96 mr-2"> {/* Contenedor con Flexbox */}
+      <button
+        className="group flex items-center justify-center w-11 h-11 bg-fuchsia-600 rounded-full cursor-pointer relative overflow-hidden transition-all duration-200 shadow-2xl hover:w-32 hover:rounded-lg active:translate-x-1 active:translate-y-1"
+        onClick={() => setIsChatVisible(true)} // Controlador de clics para mostrar el chat
+      >
+        <div
+          className="flex items-center justify-center w-full transition-all duration-300 group-hover:justify-start group-hover:px-3"
+        >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
+        </svg>
         </div>
+      <div
+        className="absolute right-5 transform translate-x-full opacity-0 text-white text-lg font-semibold transition-all duration-900 group-hover:translate-x-3 group-hover:opacity-100"
+        >
+        Chat UVP
       </div>
-  
-      <TextMessageBox 
-        onSendMessage={ handlePost }
-        placeholder='Escribe aquí lo que deseas'
-        disableCorrections
-      />
+      </button>
     </div>
+      )}
+
+      {isChatVisible && ( // Solo muestra el chat si isChatVisible es verdadero
+        <div className="chat-container">
+<div className='flex justify-between items-center text-white' style={{background: 'linear-gradient(to right,black,purple,purple)'}}>
+  {/* <div>
+    <h1 className="text-xl font-semibold ml-4">¡Hola, Pantera! 🐾</h1>
+  </div> */}
+  <button className='flex mb-2 ml-auto mt-2 mr-2' onClick={() => setIsChatVisible(false)}> 
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-7 h-7 hover:bg-red-600">
+      <path fillRule="evenodd" d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />
+    </svg>
+  </button>
+</div>
+          <div className="chat-messages mt-2">
+            <div className="grid grid-cols-12 y-2">
+              {/* Bienvenida */}
+              <GptMessage text="¡Bienvenido a la UVP! Soy tu asistente personal Sable, diseñado para facilitar tu experiencia universitaria. Ya sea que necesites información sobre programas académicos,
+              eventos, o recursos estudiantiles, estoy aquí para ayudarte. Dime, ¿en qué puedo serte útil Pantera? 😄" />
+      
+              {
+                [...messages].reverse().map( (message, index) => (
+                  message.isGpt
+                    ? (
+                      <GptMessage key={ index } text={ message.text } />
+                    )
+                    : (
+                      <MyMessage key={ index } text={ message.text } />
+                    )
+                ))
+              }
+      
+              {
+                isLoading && (
+                  <div className="col-start-1 col-end-12 fade-in">
+                    <TypingLoader />
+                  </div>
+                )
+              }
+            </div>
+          </div>
+      
+          <TextMessageBox 
+            onSendMessage={ handlePost }
+            placeholder='Escribe aquí lo que deseas'
+            disableCorrections
+          />
+        </div>
+      )}
+    </>
   )
 };

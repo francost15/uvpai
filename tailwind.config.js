@@ -9,9 +9,11 @@ export default {
   ],
   presets: [keepPreset],
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+      },
+    }
   },
-  plugins: [
-    
-  ],
+  variants: {},
+  plugins: []
 }
